@@ -152,10 +152,11 @@ void Delete(tree *&tr, tree *v){//удаление узла
 }
 
 int height(tree *tr){//
-if(Next(tr) == NULL)
+if(tr == nullptr){
     return 0;
+}
 else
-    1+max(height(tr->left),height(tr->right))
+    return 1+max(height(tr->left),height(tr->right));
 }
 
 
@@ -164,11 +165,11 @@ int main()
 int n, x;
 cout << "n="; cin >> n;
 tree *tr = NULL;
-cout << "BBedite elemeti";
+cout << "BBedite elemeti" << endl;
 for(int i = 0; i < n; i++){
 cin >> x;
-insert ( tr , x);
+insert(tr, x);
 }
-
-
+cout << height(tr);
+return 0;
 }
