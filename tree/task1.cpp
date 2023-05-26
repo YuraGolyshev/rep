@@ -43,6 +43,14 @@ void insert(tree *&tr, int x){//вставка
     }
 }
 
+void inorder(tree *tr){//симметричный обход
+if(tr){
+inorder ( tr->left);
+cout << tr->inf << " ";
+inorder ( tr->right);
+}
+}
+
 tree *find( tree *tr, int x){//поиск
     if (! tr || x == tr->inf)//нашли или дошли до конца ветки
         return tr;
@@ -57,6 +65,10 @@ tree *Min(tree *tr){//поиск min
     else return Min(tr->left);//идем по левой ветке до конца
 }
 
+tree *Max(tree *tr){//поиск max
+if (! tr->right) return tr;//нет правого ребенка
+else return Max(tr->right);//идем по правой ветке до конца
+}
 
 tree *Next(tree*tr, int x){//поиск следующего
     tree* n = find( tr , x);
@@ -68,6 +80,18 @@ tree *Next(tree*tr, int x){//поиск следующего
         y = y->parent;
     }
     return y;//возвращаем родителя
+}
+
+tree *Prev(tree *tr, int x){//поиск предыдущего
+tree *n = find(tr , x);
+if (n->left)//если есть левый ребенок
+return Max(n->left);//max по левой ветке
+tree *y = n->parent;//родитель
+while(y && n == y->left){//пока не дошли до корня или узел - левый ребенок
+n = y;//идем вверх по дереву
+y = y->parent;
+}
+return y;//возвращаем родителя
 }
 
 
@@ -129,7 +153,28 @@ void Delete(tree *&tr, tree *v){//удаление узла
 
 int main()
 {
-    
+int n, x;
+cout << "n="; cin >> n;
+tree *tr = NULL;
+for(int i = 0; i < n; i++){
+cout << i <<": ";
+cin >> x;
+insert ( tr , x);
+}
+inorder ( tr );
+cout << endl;
+cout << "min = " << Min(tr)->inf << endl;
+cout << "max = " << Max(tr)->inf << endl;
+cout << "x = "; cin >> x;
+if (find( tr ,x)){
+cout << "next = " << Next(tr, x)->inf << endl;
+cout << "prev = " << Prev(tr, x)->inf << endl;
+Delete(tr , find ( tr , x));
+inorder ( tr );
+cout << endl;
+}
+else cout << "Such node not exist in this tree\n";
+return 0;
 }
 
 
