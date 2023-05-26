@@ -165,8 +165,8 @@ int main()
 int n, x;
 cout << "n="; cin >> n;
 tree *tr = NULL;
+cout << "BBedite elemeti";
 for(int i = 0; i < n; i++){
-cout << i <<": ";
 cin >> x;
 insert ( tr , x);
 }
