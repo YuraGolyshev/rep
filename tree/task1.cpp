@@ -51,7 +51,7 @@ inorder ( tr->right);
 }
 }
 
-tree *find( tree *tr, int x){//поиск
+tree *find(tree *tr, int x){//поиск
     if (! tr || x == tr->inf)//нашли или дошли до конца ветки
         return tr;
     if (x < tr->inf)
@@ -151,6 +151,15 @@ void Delete(tree *&tr, tree *v){//удаление узла
     }
 }
 
+void postorder_del(tree *tr, int x){//обратный обход
+if(tr){
+postorder_del(tr->left, x);
+postorder_del(tr->right, x);
+if(tr->inf % x == 0)
+    Delete(tr, find(tr,tr->inf));
+}
+}
+
 int main()
 {
 int n, x;
@@ -161,19 +170,14 @@ cout << i <<": ";
 cin >> x;
 insert ( tr , x);
 }
-inorder ( tr );
+inorder(tr);
 cout << endl;
 cout << "min = " << Min(tr)->inf << endl;
 cout << "max = " << Max(tr)->inf << endl;
 cout << "x = "; cin >> x;
-if (find( tr ,x)){
-cout << "next = " << Next(tr, x)->inf << endl;
-cout << "prev = " << Prev(tr, x)->inf << endl;
-Delete(tr , find ( tr , x));
-inorder ( tr );
-cout << endl;
-}
-else cout << "Such node not exist in this tree\n";
+postorder_del(tr, x);
+inorder(tr);
+//else cout << "Such node not exist in this tree\n";
 return 0;
 }
 
