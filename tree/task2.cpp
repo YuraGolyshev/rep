@@ -151,24 +151,24 @@ void Delete(tree *&tr, tree *v){//удаление узла
     }
 }
 
-void postorder_del(tree *tr, int x){//обратный обход
-if(tr){
-postorder_del(tr->left, x);
-postorder_del(tr->right, x);
-if(tr->inf % x == 0)
-    Delete(tr, find(tr,tr->inf));
+int height(tree *tr){//
+if(Next(tr) == NULL)
+    return 0;
+else
+    1+max(height(tr->left),height(tr->right))
 }
-}
+
 
 int main()
 {
 int n, x;
 cout << "n="; cin >> n;
 tree *tr = NULL;
+cout << "BBedite elemeti";
 for(int i = 0; i < n; i++){
-cout << i <<": ";
 cin >> x;
-
+insert ( tr , x);
 }
 
 
+}
