@@ -212,5 +212,7 @@ int main(){
     cout << "x = "; cin >> x;
     find(tr, x, res);// ищем указатель на x
     cout << height(res);// выводим высоту узла x
+    cout << endl;
+    system("pause");
     return 0;
 }

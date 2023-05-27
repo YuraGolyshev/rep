@@ -171,5 +171,7 @@ int main()
         insert(tr, x);
     }
     cout << height(tr);// вывод высоты дерева
+    cout << endl;
+    system("pause");
     return 0;
 }

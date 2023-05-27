@@ -175,6 +175,8 @@ int main()
     cout << "x = "; cin >> x;// ввод x
     postorder_del(tr, x);// удаление кратных x
     inorder(tr);// вывод дерева
+    cout << endl;
+    system("pause");
     return 0;
 }
 

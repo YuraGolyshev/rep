@@ -214,5 +214,7 @@ int main(){
     int sum = 0;
     leafsum(tr, sum);
     cout << sum;// выводим сумму
+    cout << endl;
+    system("pause");
     return 0;
 }
