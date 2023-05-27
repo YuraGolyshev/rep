@@ -210,6 +210,17 @@ k--;
 //         leafsum(tr->right);
 // }
 
+void leafsum(tree *tr, int &sum)
+{
+leafsum(tr->left, sum);
+leafsum(tr->right, sum);
+if(!tr->left && !tr->right)
+{
+    sum += tr->inf;
+    cout << sum << "|";
+}
+}
+
 int main(){
 tree *tr = NULL;
 int n, x;
@@ -222,6 +233,8 @@ cout << endl;
 cout << lefth(tr) << " " << righth(tr);
 cout << endl;
 int sum = 0;
+leafsum(tr, sum);
+cout << sum << "|||";
 // leafsum(tr);
 // cout << sum << "|||";
 // cout << "x=";
