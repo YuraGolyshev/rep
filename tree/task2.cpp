@@ -3,18 +3,18 @@
 using namespace std;
 
 struct tree{
-int inf;
-tree *left;
-tree *right;
-tree *parent;
+    int inf;
+    tree *left;
+    tree *right;
+    tree *parent;
 };
 
 tree *node(int x){
-tree *n = new tree;
-n->inf = x;
-n->parent = NULL;
-n->right = NULL;
-n->left = NULL;
+    tree *n = new tree;
+    n->inf = x;
+    n->parent = NULL;
+    n->right = NULL;
+    n->left = NULL;
 }
 
 void insert(tree *&tr, int x){//вставка
@@ -44,11 +44,11 @@ void insert(tree *&tr, int x){//вставка
 }
 
 void inorder(tree *tr){//симметричный обход
-if(tr){
-inorder ( tr->left);
-cout << tr->inf << " ";
-inorder ( tr->right);
-}
+    if(tr){
+        inorder ( tr->left);
+        cout << tr->inf << " ";
+        inorder ( tr->right);
+    }
 }
 
 tree *find(tree *tr, int x){//поиск
@@ -83,15 +83,15 @@ tree *Next(tree*tr, int x){//поиск следующего
 }
 
 tree *Prev(tree *tr, int x){//поиск предыдущего
-tree *n = find(tr , x);
-if (n->left)//если есть левый ребенок
-return Max(n->left);//max по левой ветке
-tree *y = n->parent;//родитель
-while(y && n == y->left){//пока не дошли до корня или узел - левый ребенок
-n = y;//идем вверх по дереву
-y = y->parent;
-}
-return y;//возвращаем родителя
+    tree *n = find(tr , x);
+    if (n->left)//если есть левый ребенок
+        return Max(n->left);//max по левой ветке
+    tree *y = n->parent;//родитель
+    while(y && n == y->left){//пока не дошли до корня или узел - левый ребенок
+        n = y;//идем вверх по дереву
+        y = y->parent;
+    }
+    return y;//возвращаем родителя
 }
 
 
@@ -151,7 +151,7 @@ void Delete(tree *&tr, tree *v){//удаление узла
     }
 }
 
-int height(tree *tr){//
+int height(tree *tr){//функция, которая возвращает высоту дерева
 if(tr == nullptr){
     return 0;
 }
@@ -162,14 +162,14 @@ else
 
 int main()
 {
-int n, x;
-cout << "n="; cin >> n;
-tree *tr = NULL;
-cout << "BBedite elemeti" << endl;
-for(int i = 0; i < n; i++){
-cin >> x;
-insert(tr, x);
-}
-cout << height(tr);
-return 0;
+    int n, x;
+    cout << "n="; cin >> n;
+    tree *tr = NULL;
+    cout << "BBedite elemeti" << endl;
+    for(int i = 0; i < n; i++){
+        cin >> x;
+        insert(tr, x);
+    }
+    cout << height(tr);// вывод высоты дерева
+    return 0;
 }
