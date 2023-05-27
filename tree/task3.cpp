@@ -212,46 +212,45 @@ k--;
 
 void leafsum(tree *tr, int &sum)
 {
-leafsum(tr->left, sum);
-leafsum(tr->right, sum);
-if(!tr->left && !tr->right)
-{
-    sum += tr->inf;
-    cout << sum << "|";
-}
+    if(!tr)
+        return;
+    leafsum(tr->left, sum);
+    leafsum(tr->right, sum);
+    if(!tr->left && !tr->right)
+        sum += tr->inf;
 }
 
 int main(){
-tree *tr = NULL;
-int n, x;
-in >> n;
-create ( tr , n);
-int k = int (log((float)n)/log((float)2.0));
-print ( tr , k);
-preorder( tr );
-cout << endl;
-cout << lefth(tr) << " " << righth(tr);
-cout << endl;
-int sum = 0;
-leafsum(tr, sum);
-cout << sum << "|||";
-// leafsum(tr);
-// cout << sum << "|||";
-// cout << "x=";
-// cin >> x;
-// add(tr,x);
-// n++;
-// k = int (log((float)n)/log((float)2.0));
-// print (tr, k);
-// preorder(tr);
-// cout << endl;
-// cout << " del node: ";
-// cin >> x;
-// del_n(tr , x);
-// n--;
-k = int (log((float)n)/log((float)2.0));
-print ( tr , k);
-preorder( tr );
-cout << endl;
-return 0;
+    tree *tr = NULL;
+    int n, x;
+    in >> n;
+    create ( tr , n);
+    int k = int (log((float)n)/log((float)2.0));
+    print ( tr , k);
+    preorder( tr );
+    cout << endl;
+    cout << lefth(tr) << " " << righth(tr);
+    cout << endl;
+    int sum = 0;
+    leafsum(tr, sum);
+    cout << sum << "|||";
+    // leafsum(tr);
+    // cout << sum << "|||";
+    // cout << "x=";
+    // cin >> x;
+    // add(tr,x);
+    // n++;
+    // k = int (log((float)n)/log((float)2.0));
+    // print (tr, k);
+    // preorder(tr);
+    // cout << endl;
+    // cout << " del node: ";
+    // cin >> x;
+    // del_n(tr , x);
+    // n--;
+    k = int (log((float)n)/log((float)2.0));
+    print ( tr , k);
+    preorder( tr );
+    cout << endl;
+    return 0;
 }
