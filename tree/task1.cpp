@@ -3,18 +3,18 @@
 using namespace std;
 
 struct tree{
-int inf;
-tree *left;
-tree *right;
-tree *parent;
+    int inf;
+    tree *left;
+    tree *right;
+    tree *parent;
 };
 
 tree *node(int x){
-tree *n = new tree;
-n->inf = x;
-n->parent = NULL;
-n->right = NULL;
-n->left = NULL;
+    tree *n = new tree;
+    n->inf = x;
+    n->parent = NULL;
+    n->right = NULL;
+    n->left = NULL;
 }
 
 void insert(tree *&tr, int x){//вставка
@@ -83,15 +83,15 @@ tree *Next(tree*tr, int x){//поиск следующего
 }
 
 tree *Prev(tree *tr, int x){//поиск предыдущего
-tree *n = find(tr , x);
-if (n->left)//если есть левый ребенок
-return Max(n->left);//max по левой ветке
-tree *y = n->parent;//родитель
-while(y && n == y->left){//пока не дошли до корня или узел - левый ребенок
-n = y;//идем вверх по дереву
-y = y->parent;
-}
-return y;//возвращаем родителя
+    tree *n = find(tr , x);
+    if (n->left)//если есть левый ребенок
+        return Max(n->left);//max по левой ветке
+    tree *y = n->parent;//родитель
+    while(y && n == y->left){//пока не дошли до корня или узел - левый ребенок
+        n = y;//идем вверх по дереву
+        y = y->parent;
+    }
+    return y;//возвращаем родителя
 }
 
 
@@ -152,33 +152,30 @@ void Delete(tree *&tr, tree *v){//удаление узла
 }
 
 void postorder_del(tree *tr, int x){//обратный обход
-if(tr){
-postorder_del(tr->left, x);
-postorder_del(tr->right, x);
-if(tr->inf % x == 0)
-    Delete(tr, find(tr,tr->inf));
-}
+    if(tr){
+        postorder_del(tr->left, x);
+        postorder_del(tr->right, x);
+        if(tr->inf % x == 0)
+            Delete(tr, find(tr,tr->inf));
+    }
 }
 
 int main()
 {
-int n, x;
-cout << "n="; cin >> n;
-tree *tr = NULL;
-cout << "BBedite elemeti";
-for(int i = 0; i < n; i++){
-cin >> x;
-insert ( tr , x);
-}
-inorder(tr);
-cout << endl;
-cout << "min = " << Min(tr)->inf << endl;
-cout << "max = " << Max(tr)->inf << endl;
-cout << "x = "; cin >> x;
-postorder_del(tr, x);
-inorder(tr);
-//else cout << "Such node not exist in this tree\n";
-return 0;
+    int n, x, y;
+    cout << "n="; cin >> n;
+    tree *tr = NULL;
+    cout << "BBedite elemeti" << endl;
+    for(int i = 0; i < n; i++){
+        cin >> y;
+        insert (tr, y);
+    }
+    inorder(tr);// вывод дерева
+    cout << endl;
+    cout << "x = "; cin >> x;// ввод x
+    postorder_del(tr, x);// удаление кратных x
+    inorder(tr);// вывод дерева
+    return 0;
 }
 
 
