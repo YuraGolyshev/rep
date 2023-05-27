@@ -196,7 +196,19 @@ k--;
 }
 }
 }
-
+// int sum = 0;
+// void leafsum(tree *tr) { //Функция которая считает сумму всех листьев бинарного дерева 
+//     if (!tr)
+//         return;
+//     if (!tr->left && !tr->right) {
+//         sum += tr->inf;
+//         return;
+//     }
+//     if (tr->left)
+//         leafsum(tr->left);
+//     if (tr->right)
+//         leafsum(tr->right);
+// }
 
 int main(){
 tree *tr = NULL;
@@ -209,18 +221,21 @@ preorder( tr );
 cout << endl;
 cout << lefth(tr) << " " << righth(tr);
 cout << endl;
-cout << "x=";
-cin >> x;
-add(tr,x);
-n++;
-k = int (log((float)n)/log((float)2.0));
-print ( tr , k);
-preorder( tr );
-cout << endl;
-cout << " del node: ";
-cin >> x;
-del_n(tr , x);
-n--;
+int sum = 0;
+// leafsum(tr);
+// cout << sum << "|||";
+// cout << "x=";
+// cin >> x;
+// add(tr,x);
+// n++;
+// k = int (log((float)n)/log((float)2.0));
+// print (tr, k);
+// preorder(tr);
+// cout << endl;
+// cout << " del node: ";
+// cin >> x;
+// del_n(tr , x);
+// n--;
 k = int (log((float)n)/log((float)2.0));
 print ( tr , k);
 preorder( tr );
