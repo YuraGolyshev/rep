@@ -37,12 +37,12 @@ vector<vector<int>> Gr;			//Cписок смежности
 	}
 
 	for (int i = 0; i < n; i++) {	
-		sort(Gr[i].begin(), Gr[i].end());
-		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());
+		sort(Gr[i].begin(), Gr[i].end());// Сортируем все строки вектора
+		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());// Удаляем дубликаты
 	}
 
 	cout << "\nsp smewn:\n"; // вывод списка сможности
-	for (int i = 0; i < n; i++) {	// вывод содержимого списка смежности
+	for (int i = 0; i < n; i++) {	
 		cout << "x = " << i << ": ";
 		for (auto it = Gr[i].begin(); it != Gr[i].end(); it++) {
 			cout << *it << ' ';
@@ -54,7 +54,7 @@ vector<vector<int>> Gr;			//Cписок смежности
 		int c = 0;
 
 		for (int j = 0; j < n; j++) {
-			c += count(Gr[i].begin(), Gr[i].end(), j);	//В счётчик count прибавляем, можно ли попасть из данной вершины в вершину j, и так делаем с каждой вершиной
+			c += count(Gr[i].begin(), Gr[i].end(), j);	// считаем, если из данной вершины можно попасть в вершину j
 		}
 
 		cout << "ish_" << i << " = " << c << endl;

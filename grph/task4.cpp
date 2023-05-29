@@ -53,12 +53,12 @@ int main()
 	}
 
 	for (int i = 0; i < n; i++) {	
-		sort(Gr[i].begin(), Gr[i].end());
-		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());
+		sort(Gr[i].begin(), Gr[i].end());// Сортируем все строки вектора
+		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());// Удаляем дубликаты
 	}
 
 	cout << "\nsp smewn:\n"; // вывод списка сможности
-	for (int i = 0; i < n; i++) {	// вывод содержимого списка смежности
+	for (int i = 0; i < n; i++) {	
 		cout << "x = " << i << ": ";
 		for (auto it = Gr[i].begin(); it != Gr[i].end(); it++) {
 			cout << *it << ' ';
@@ -67,7 +67,7 @@ int main()
 	}
     cout << "x = ";cin >> x;
     depth(x, n);
-    for(int i=0;i<used.size();i++)
+    for(int i=0;i<used.size();i++)// получается, если в used нули то вершины с номерами этих элементов нам подходят
     {
         if(used[i] == 0)
             cout << i << " ";

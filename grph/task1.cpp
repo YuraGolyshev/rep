@@ -38,12 +38,12 @@ vector<vector<int>> Gr;			//Cписок смежности
 	}
 
 	for (int i = 0; i < n; i++) {	
-		sort(Gr[i].begin(), Gr[i].end());
-		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());
+		sort(Gr[i].begin(), Gr[i].end());// Сортируем все строки вектора
+		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());// Удаляем дубликаты
 	}
 
 	cout << "\nsp smewn:\n"; // вывод списка сможности
-	for (int i = 0; i < n; i++) {	// вывод содержимого списка смежности
+	for (int i = 0; i < n; i++) {	
 		cout << "x = " << i << ": ";
 		for (auto it = Gr[i].begin(); it != Gr[i].end(); it++) {
 			cout << *it << ' ';
