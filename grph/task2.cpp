@@ -50,8 +50,24 @@ vector<vector<int>> Gr;			//Cписок смежности
 		}
 		cout << endl;
 	}
-    int k, tmp;
-    // cout << "k ="; cin >> k;
+    int a, b;
+    cout << "a ="; cin >> a;
+    cout << "b ="; cin >> b;
+    if (auto it = find(Gr[a].begin(), Gr[a].end(), b); it != Gr[a].end()) {
+        Gr[a].erase(it);
+    }
+    if (auto it = find(Gr[b].begin(), Gr[b].end(), a); it != Gr[b].end()) {
+        Gr[b].erase(it);
+    }
+
+    cout << "\nsp smewn:\n"; // вывод списка сможности
+	for (int i = 0; i < n; i++) {	// вывод содержимого списка смежности
+		cout << "x = " << i << ": ";
+		for (auto it = Gr[i].begin(); it != Gr[i].end(); it++) {
+			cout << *it << ' ';
+        }
+    cout << endl;
+    }
     // for (int i = 0; i < Gr.size(); i++) //Идем по вершинам графа
     //     {
     //         bool flag = false; //Создаем флаг, отвечающий за смежность с вершиной k
