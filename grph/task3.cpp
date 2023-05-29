@@ -50,5 +50,13 @@ vector<vector<int>> Gr;			//Cписок смежности
 		cout << endl;
 	}
     
-    
+    for (int i = 0; i < n; i++) {
+		int c = 0;
+
+		for (int j = 0; j < n; j++) {
+			c += count(Gr[i].begin(), Gr[i].end(), j);	//В счётчик count прибавляем, можно ли попасть из данной вершины в вершину j, и так делаем с каждой вершиной
+		}
+
+		cout << "ish_" << i << " = " << c << endl;
+	}
 }
