@@ -9,12 +9,28 @@
 
 using namespace std;
 
+vector<vector<int>> Gr;			//Cписок смежности
+vector<int> used;				//Список посещенных вершин
+vector<int> path;				//Список вершин составляющих путь
+
 ifstream in ("input.txt");
+
+void depth(int x, int n) {		//Функция обхода в глубину
+
+	used.resize(n);
+	used[x] = 1;
+	path.push_back(x);
+
+	for (int i = 0; i < Gr[x].size(); i++) {
+		if (used[Gr[x][i]] == 0) {
+			depth(Gr[x][i], n);
+		}
+    }
+}
 
 int main()
 {
-vector<vector<int>> Gr;			//Cписок смежности
-	int n, r;
+	int n, r, x;
 
 	cout << "n = "; // кол-во вершин
 	in >> n;
@@ -49,9 +65,15 @@ vector<vector<int>> Gr;			//Cписок смежности
 		}
 		cout << endl;
 	}
-    
-    
-
+    cout << "x = ";cin >> x;
+    depth(x, n);
+    // for (auto it = used.begin(); it != used.end(); it++)
+	// 		cout << *it << ' ';
+    for(int i=0;i<used.size();i++)
+    {
+        if(used[i] == 0)
+            cout << i << " ";
+    }
     // for (int i = 0; i < n; i++) {
 	// 	int c = 0;
 
