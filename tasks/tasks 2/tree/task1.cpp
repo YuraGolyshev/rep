@@ -97,7 +97,7 @@ tree *Prev(tree *tr, int x){//поиск предыдущего
 
 void Delete(tree *&tr, tree *v){//удаление узла
     tree *p = v->parent;
-    if (!p) tr = NULL; //дерево содержит один узел
+    if (!p && !v->left && !v-> right) tr = NULL; //дерево содержит один узел ИСПРАВИЛ
     else if (!v->left && !v->right){//если нет детей
         if (p->left == v) //указатель у родителя меняем на NULL
             p->left = NULL;
@@ -153,10 +153,11 @@ void Delete(tree *&tr, tree *v){//удаление узла
 
 void postorder_del(tree *tr, int x){//обратный обход
     if(tr){
+        tree *p = tr;
         postorder_del(tr->left, x);
         postorder_del(tr->right, x);
-        if(tr->inf % x == 0)
-            Delete(tr, find(tr,tr->inf));
+        if(tr->inf % x == 0 && p->inf)
+            Delete(tr, p);
     }
 }
 
