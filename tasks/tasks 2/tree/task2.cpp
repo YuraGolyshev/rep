@@ -97,7 +97,7 @@ tree *Prev(tree *tr, int x){//поиск предыдущего
 
 void Delete(tree *&tr, tree *v){//удаление узла
     tree *p = v->parent;
-    if (!p) tr = NULL; //дерево содержит один узел
+    if (!p && !v->left && !v-> right) tr = NULL; //дерево содержит один узел ИСПРАВИЛ
     else if (!v->left && !v->right){//если нет детей
         if (p->left == v) //указатель у родителя меняем на NULL
             p->left = NULL;
