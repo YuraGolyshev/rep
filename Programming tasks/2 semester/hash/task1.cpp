@@ -109,13 +109,12 @@ void find_in_hash(vector<list <people>> tabl, int month) // функция по�
 {
     int hash = month % 47;  // находим хэш заданного числа
     bool flag = false;
-    cout << "hash: " << hash << " ";
     for (auto it = tabl[hash].begin(); it != tabl[hash].end(); it++) // просматриваем в соответствующей строке таблицы
     {
         people fp = *it;
         if (fp.dob.mm == month) // если нашили, то выводим на экран
         {
-            cout << "information about a person: "; print(fp);
+            cout << "information about a person: " << endl; print(fp);
             flag = true;
             cout << endl;
         }
