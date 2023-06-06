@@ -2,70 +2,13 @@
 #include <algorithm>
 #include <string>
 #include <fstream>
-//#include <list>
+#include <list>
 #include <vector>
 #include <iomanip>
 
 using namespace std;
 
 ifstream in("input.txt");
-
-struct list {
-int inf;
-list *next;
-list *prev;
-};
-
-void push (list *&h, list *&t, int x){ //вставка элемента в конец списка
-    list *r = new list; //создаем новый элемент
-    r->inf = x;
-    r->next = NULL; //всегда последний
-    if (!h && !t){ //если список пуст
-        r->prev = NULL; //первый элемент
-        h = r; //это голова
-    }
-    else{
-        t->next = r; //r - следующий для хвоста
-        r->prev = t; //хвост - предыдущий для r
-    }
-    t = r; //r теперь хвост
-}
-
-void print ( list *h, list *t){ //печать элементов списка
-    list *p = h; //укзатель на голову
-    while (p){ //пока не дошли до конца списка
-        cout << p->inf << " ";
-        p = p->next; //переход к следующему элементу
-}
-}
-
-list *find ( list *h, list *t, int x){ //поиск элементов списка
-    list *p = h; //укзатель на голову
-    while (p){ //пока не дошли до конца списка
-        if (p->inf == x) break; // если нашли, прекращаем цикл
-        p = p->next; //переход к следующему элементу
-    }
-    return p; //возвращаем указатель
-}
-
-void del_node (list *&h, list *&t, list *r){ //удаляем после r
-if (r == h && r == t) //единственный элемент списка
-h = t = NULL;
-else if (r == h){ //удаляем голову списка
-h = h->next; //сдвигаем голову
-h->prev = NULL;
-
-}
-else if (r == t){ //удаляем хвост списка
-t = t->prev; //сдвигаем хвост
-t->next = NULL;
-}
-else{
-r->next->prev = r->prev; //для следующего от r предыдущим становится r->prev
-r->prev->next = r->next; //для предыдущего от r следующим становится r->next
-}
-delete r; //удаляем r
-}
 
 struct date //дата
 {
@@ -124,7 +67,7 @@ int h(people x) // хэш-функция
     return x.dob.mm % 47; // берем остаток от деления месяца рождения на 47
 }
 
-void create(vector <people> x, vector<list*> &tabl) // 
+void create(vector <people> x, vector<list <people>> &tabl) // 
 {
   tabl.resize(x.size());
   for (int i = 0; i < x.size() - 1; i++) 
@@ -154,16 +97,15 @@ people inputinf() // ввод данных о человеке
   return newp;
 }
 
-void add_people(vector<list*>& tabl) // функция добавления человека
+void add_people(vector<list <people>> &tabl) // функция добавления человека
 {
     people newp = inputinf();
     int k = h(newp); // вычисляем хэш
-    tabl[k].push()
-  tabl[k].push_back(newp);
-  cout << "Person added successfully!" << endl;
+    tabl[k].push_back(newp);
+    cout << "Person added successfully!" << endl;
 }
 
-void find_in_hash(vector <list*> tabl, int month) // функция поиска человека по месяцу в таблице
+void find_in_hash(vector<list <people>> tabl, int month) // функция поиска человека по месяцу в таблице
 {
     int hash = month % 47;  // находим хэш заданного числа
     bool flag = false;
@@ -183,7 +125,7 @@ void find_in_hash(vector <list*> tabl, int month) // функция поиска
     cout << endl;
 }
 
-void delp(vector <list*> tabl, int month) // функция удаления человека по месяцу в таблице
+void delp(vector<list <people>> &tabl, int month) // функция удаления человека по месяцу в таблице
 {
     int hash = month % 47;  // находим хэш заданного числа
     bool flag = false;
@@ -204,7 +146,7 @@ void delp(vector <list*> tabl, int month) // функция удаления ч�
 
 int main()
 {
-    vector <list*> tabl; // создаем таблицу
+    vector<list <people>> tabl; // создаем таблицу
     vector <people> x;
     x = inFile();   // считываем из файла
     create(x, tabl); // заполняем хэш-таблицу
