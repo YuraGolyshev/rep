@@ -21,12 +21,8 @@ int main()
         int x, y;
         cout << "r" << i+1 << " - ";
         cin >> x;  cin >> y;
-		if (x > n || y > n) {   // неор
-		}
-		else {
-			Gr[x].insert(y);		
-			Gr[y].insert(x);		
-		}  
+		Gr[x].insert(y);// неор
+		Gr[y].insert(x);		
     }
 
     int v1 = -1, v2 = -1;
@@ -97,4 +93,6 @@ int main()
             cout << res[i] + 1 << ' ';
         cout << endl;
     }
+    system("Pause");										
+	return 0;												
 }
